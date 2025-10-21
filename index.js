@@ -1,23 +1,41 @@
-function missingNumber(nums) {
-  const newObj = {};
-  const newArr = [];
-  let count = 0;
+function searchMatrix(matrix, target) {
+  for (let i = 0; i < matrix.length; i++) {
+    let left = 0;
+    let right = matrix[i].length - 1;
 
-  for (let i = 0; i < nums.length; i++) {
-    newObj[nums[i]] = nums[i];
-  }
+    while (left <= right) {
+      let midIndex = Math.floor((left + right) / 2);
 
-  for (const num in newObj) {
-    newArr.push(Number(num));
-  }
-
-  for (let i = 0; i < nums.length + 1; i++) {
-    if (newArr[i] !== i) {
-      return i;
+      if (matrix[i][midIndex] === target) {
+        return true;
+      } else if (matrix[i][midIndex] < target) {
+        left = midIndex + 1;
+      } else {
+        right = midIndex - 1;
+      }
     }
   }
+
+  return false;
 }
 
-missingNumber([0, 1]); // 2
-missingNumber([3, 0, 1]); // 2
-missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1, 10]); // 8
+console.log(
+  searchMatrix(
+    [
+      [1, 3, 5, 7],
+      [10, 11, 16, 20],
+      [23, 30, 34, 60],
+    ],
+    3
+  )
+);
+console.log(
+  searchMatrix(
+    [
+      [1, 3, 5, 7],
+      [10, 11, 16, 20],
+      [23, 30, 34, 60],
+    ],
+    13
+  )
+);
