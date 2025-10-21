@@ -1,6 +1,7 @@
 function missingNumber(nums) {
   const newObj = {};
   const newArr = [];
+  let count = 0;
 
   for (let i = 0; i < nums.length; i++) {
     newObj[nums[i]] = nums[i];
